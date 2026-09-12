@@ -1,0 +1,91 @@
+{
+  "version": "5.2.0",
+  "generated_at": "2026-09-11T00:00:00Z",
+  "database_target": "data/eden_v5.db",
+  "nodes": [
+    {
+      "id": "bod",
+      "title": "Biochemical Oxygen Demand (BOD)",
+      "category": "pollution_indicators",
+      "summary": "The amount of dissolved oxygen required by aerobic microorganisms to break down organic matter in a given water volume over a specific time and temperature.",
+      "formulaOrMetric": "BOD_t = L_0 * (1 - e^(-k * t))",
+      "examRelevance": "AP Environmental Science Unit 8: Aquatic and Terrestrial Pollution; FE Environmental Exam: Water Resources",
+      "careerRelevance": "Water Resource Engineers and Wastewater Treatment Plant Operators use BOD to size aeration basins and evaluate discharge compliance.",
+      "difficulty": "Intermediate",
+      "simulationModel": "do_bod"
+    },
+    {
+      "id": "do",
+      "title": "Dissolved Oxygen (DO)",
+      "category": "hydrosphere",
+      "summary": "The concentration of free, non-compound oxygen molecules dissolved in water, vital for the respiration of fish, invertebrates, and aerobic microbiota.",
+      "formulaOrMetric": "DO_crit = (k_d * L_a / (k_r - k_d)) * (e^(-k_d * t_c) - e^(-k_r * t_c))",
+      "examRelevance": "APES Water Quality Index testing; Limnology & Aquatic Ecology exams",
+      "careerRelevance": "Aquatic Biologists, Environmental Compliance Officers",
+      "difficulty": "Foundational",
+      "simulationModel": "do_bod"
+    },
+    {
+      "id": "streeter_phelps",
+      "title": "Streeter-Phelps Oxygen Sag Model",
+      "category": "hydrosphere",
+      "summary": "Classic mathematical model predicting the oxygen deficit downstream from a point-source organic discharge in a river.",
+      "formulaOrMetric": "D_t = [k_d * L_0 / (k_r - k_d)] * [e^(-k_d*t) - e^(-k_r*t)] + D_0 * e^(-k_r*t)",
+      "examRelevance": "PE Environmental Engineering Exam: Water Quality Modeling",
+      "careerRelevance": "Environmental Engineers calculating Total Maximum Daily Loads (TMDLs)",
+      "difficulty": "Advanced",
+      "simulationModel": "do_bod"
+    },
+    {
+      "id": "eutrophication",
+      "title": "Cultural Eutrophication",
+      "category": "pollution_indicators",
+      "summary": "Anthropogenic nutrient enrichment (nitrogen and phosphorus) leading to algal blooms, hypoxia, and dead zones.",
+      "formulaOrMetric": "Redfield Ratio: C:N:P = 106:16:1",
+      "examRelevance": "APES Unit 8; IB Environmental Systems and Societies Topic 4",
+      "careerRelevance": "Watershed Managers, Agricultural Environmental Specialists",
+      "difficulty": "Foundational"
+    },
+    {
+      "id": "clean_water_act",
+      "title": "Clean Water Act (CWA) & NPDES",
+      "category": "environmental_policy",
+      "summary": "Primary US federal law governing water pollution, establishing the National Pollutant Discharge Elimination System (NPDES) permit program.",
+      "formulaOrMetric": "33 U.S.C. § 1251 et seq. (1972)",
+      "examRelevance": "APES Environmental Law; PE Civil/Environmental Licensure",
+      "careerRelevance": "Environmental Lawyers, Regulatory Compliance Specialists",
+      "difficulty": "Intermediate"
+    },
+    {
+      "id": "carbon_budget",
+      "title": "Remaining Global Carbon Budget",
+      "category": "atmosphere",
+      "summary": "The cumulative finite quantity of net anthropogenic CO2 emissions that can still be emitted while limiting global warming to a given temperature threshold (e.g. 1.5°C or 2.0°C).",
+      "formulaOrMetric": "TCRE = ΔT / Cumulative_CO2 (~0.45°C per 1000 GtCO2)",
+      "examRelevance": "APES Global Change Unit 9; College Earth Science & Climatology",
+      "careerRelevance": "Climate Risk Analysts, Corporate Sustainability Officers (ESG)",
+      "difficulty": "Advanced",
+      "simulationModel": "carbon_budget"
+    },
+    {
+      "id": "island_biogeography",
+      "title": "Theory of Island Biogeography",
+      "category": "biosphere",
+      "summary": "The MacArthur-Wilson equilibrium model stating that species richness on an island is determined by immigration rate (distance from mainland) and extinction rate (island area).",
+      "formulaOrMetric": "S = c * A^z (Arrhenius Species-Area Relationship)",
+      "examRelevance": "APES Unit 2: Biodiversity; GRE Biology Ecology Section",
+      "careerRelevance": "Conservation Biologists designing wildlife corridors and protected reserve networks (SLOSS debate).",
+      "difficulty": "Intermediate",
+      "simulationModel": "island_biogeography"
+    }
+  ],
+  "edges": [
+    { "id": "e1", "source": "bod", "target": "do", "relation": "interacts_with", "weight": 0.95 },
+    { "id": "e2", "source": "streeter_phelps", "target": "bod", "relation": "measured_by", "weight": 0.9 },
+    { "id": "e3", "source": "streeter_phelps", "target": "do", "relation": "measured_by", "weight": 0.9 },
+    { "id": "e4", "source": "eutrophication", "target": "bod", "relation": "causes", "weight": 0.85 },
+    { "id": "e5", "source": "clean_water_act", "target": "bod", "relation": "regulated_by", "weight": 0.9 },
+    { "id": "e6", "source": "carbon_budget", "target": "radiative_forcing", "relation": "interacts_with", "weight": 0.95 },
+    { "id": "e7", "source": "island_biogeography", "target": "keystone_species", "relation": "contains", "weight": 0.8 }
+  ]
+}

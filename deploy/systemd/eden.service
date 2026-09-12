@@ -1,0 +1,16 @@
+[Unit]
+Description=EDEN Environmental Intelligence Daemon
+After=network.target
+
+[Service]
+Type=simple
+User=eden
+WorkingDirectory=/opt/eden
+ExecStart=/opt/eden/venv/bin/uvicorn backend.app:app --host 127.0.0.1 --port 3000 --workers 4
+Restart=always
+RestartSec=5
+Environment=EDEN_DB_PATH=/opt/eden/data/eden_v5.db
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target

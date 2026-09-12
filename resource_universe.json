@@ -1,0 +1,51 @@
+{
+  "version": "5.2.0",
+  "name": "EDEN Curated Resource Universe",
+  "description": "External environmental standards, bulletins, and registries mapped to knowledge graph concept IDs",
+  "resources": [
+    {
+      "id": "res_ipcc_ar6_wg1",
+      "title": "IPCC Sixth Assessment Report (AR6): The Physical Science Basis",
+      "organization": "IPCC",
+      "type": "Assessment Report",
+      "reliabilityTier": "Tier-1 Authoritative",
+      "conceptIds": ["carbon_budget", "radiative_forcing"],
+      "url": "https://www.ipcc.ch/report/ar6/wg1/",
+      "license": "CC-BY-4.0",
+      "summary": "Defines remaining global carbon budgets (500 GtCO2 for 50% 1.5°C chance from 2020) and effective radiative forcing metrics."
+    },
+    {
+      "id": "res_epa_wqs",
+      "title": "EPA National Recommended Water Quality Criteria - Aquatic Life",
+      "organization": "EPA",
+      "type": "Regulatory Standard",
+      "reliabilityTier": "Government Standard",
+      "conceptIds": ["bod", "do", "clean_water_act"],
+      "url": "https://www.epa.gov/wqc/national-recommended-water-quality-criteria-aquatic-life-criteria-table",
+      "license": "US Public Domain",
+      "summary": "Establishes acute and chronic dissolved oxygen criteria for freshwater and saltwater fish protection."
+    },
+    {
+      "id": "res_wmo_ghg_bulletin",
+      "title": "WMO Greenhouse Gas Bulletin No. 20",
+      "organization": "WMO",
+      "type": "Observation Bulletin",
+      "reliabilityTier": "Tier-1 Authoritative",
+      "conceptIds": ["radiative_forcing", "carbon_budget"],
+      "url": "https://wmo.int/publication-series/wmo-greenhouse-gas-bulletin",
+      "license": "Open Access (WMO)",
+      "summary": "Global observations tracking atmospheric concentrations of CO2, CH4, and N2O."
+    },
+    {
+      "id": "res_iucn_redlist",
+      "title": "IUCN Red List of Threatened Species Guidelines",
+      "organization": "IUCN",
+      "type": "Conservation Database",
+      "reliabilityTier": "Tier-1 Authoritative",
+      "conceptIds": ["island_biogeography", "keystone_species"],
+      "url": "https://www.iucnredlist.org",
+      "license": "Non-Commercial Educational",
+      "summary": "Quantitative criteria (Criterion A-E) evaluating species extinction risk and habitat fragmentation impact."
+    }
+  ]
+}

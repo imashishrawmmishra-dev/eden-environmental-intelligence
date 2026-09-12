@@ -1,0 +1,67 @@
+{
+  "version": "5.2.0",
+  "registry_name": "EDEN Authoritative Source Registry",
+  "total_sources": 8,
+  "sources": [
+    {
+      "id": "src_ipcc_ar6",
+      "name": "Intergovernmental Panel on Climate Change (IPCC)",
+      "authority_type": "UN Scientific Treaty Body",
+      "reliability_tier": "Tier-1 Authoritative",
+      "base_url": "https://www.ipcc.ch",
+      "default_license": "Creative Commons Attribution 4.0 International (CC-BY-4.0)",
+      "data_formats": ["PDF", "NetCDF", "CSV", "GeoTIFF"],
+      "api_supported": false
+    },
+    {
+      "id": "src_wmo",
+      "name": "World Meteorological Organization (WMO)",
+      "authority_type": "UN Specialized Agency",
+      "reliability_tier": "Tier-1 Authoritative",
+      "base_url": "https://wmo.int",
+      "default_license": "WMO Open Data Policy (Resolution 1 / Cg-Ext 2021)",
+      "data_formats": ["BUFR", "GRIB2", "JSON", "NetCDF"],
+      "api_supported": true
+    },
+    {
+      "id": "src_epa",
+      "name": "United States Environmental Protection Agency (US EPA)",
+      "authority_type": "Federal Government Regulatory Agency",
+      "reliability_tier": "Government Standard",
+      "base_url": "https://www.epa.gov",
+      "default_license": "US Government Work (Public Domain)",
+      "data_formats": ["JSON", "CSV", "REST API"],
+      "api_supported": true
+    },
+    {
+      "id": "src_noaa",
+      "name": "National Oceanic and Atmospheric Administration (NOAA)",
+      "authority_type": "Federal Government Scientific Agency",
+      "reliability_tier": "Tier-1 Authoritative",
+      "base_url": "https://gml.noaa.gov",
+      "default_license": "US Government Work (Public Domain)",
+      "data_formats": ["ASCII", "CSV", "NetCDF"],
+      "api_supported": true
+    },
+    {
+      "id": "src_iucn",
+      "name": "International Union for Conservation of Nature (IUCN)",
+      "authority_type": "International Conservation Union",
+      "reliability_tier": "Tier-1 Authoritative",
+      "base_url": "https://www.iucnredlist.org",
+      "default_license": "IUCN Red List Terms of Use (Non-Commercial)",
+      "data_formats": ["CSV", "Spatial Shapefile", "REST API"],
+      "api_supported": true
+    },
+    {
+      "id": "src_unep",
+      "name": "United Nations Environment Programme (UNEP)",
+      "authority_type": "UN Specialized Programme",
+      "reliability_tier": "Tier-1 Authoritative",
+      "base_url": "https://www.unep.org",
+      "default_license": "Creative Commons Attribution 3.0 IGO",
+      "data_formats": ["PDF", "CSV"],
+      "api_supported": false
+    }
+  ]
+}

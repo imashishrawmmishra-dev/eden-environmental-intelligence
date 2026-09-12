@@ -1,0 +1,6 @@
+{
+  "name": "EDEN — Environmental Intelligence & Learning Platform",
+  "description": "Environmental intelligence and learning platform featuring a domain knowledge graph, multi-intent reasoning, next-step pedagogical actions, resource universe, learner competency matrix, and multi-platform deployment scaffolding.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
