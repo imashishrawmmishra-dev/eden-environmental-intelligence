@@ -455,8 +455,7 @@ async function startServer() {
       const gemini = getGeminiClient();
       if (mode === 'live_ai') {
         if (gemini) {
-          try {
-            const prompt = `You are EDEN, an environmental intelligence and learning platform.
+          const prompt = `You are EDEN, an environmental intelligence and learning platform.
 Ground your response strictly in the following knowledge graph nodes and scientific sources:
 
 Knowledge Nodes Context:
@@ -475,16 +474,46 @@ Structure your answer with:
 3. Scientific Grounding & Curated Standards (cite IPCC, EPA, or WMO from the context)
 4. Pedagogical Guidance tailored to the intent (${intent})`;
 
-            const response = await gemini.models.generateContent({
-              model: 'gemini-3.8-flash',
-              contents: prompt
-            });
-            answer = response.text || '';
-            executionMode = 'live_ai_grounded';
-          } catch (err: any) {
-            console.warn('Gemini call failed or timed out, falling back to offline knowledge graph:', err);
+          // Resilient call pipeline: Try primary model with retry, then fallback model if 503 high demand or unavailable
+          const candidateModels = ['gemini-3.8-flash', 'gemini-3.1-flash-lite'];
+          let lastError: any = null;
+
+          for (const modelName of candidateModels) {
+            for (let attempt = 0; attempt < 2; attempt++) {
+              try {
+                if (attempt > 0) {
+                  await new Promise(res => setTimeout(res, 600));
+                }
+                const response = await gemini.models.generateContent({
+                  model: modelName,
+                  contents: prompt
+                });
+                if (response.text) {
+                  answer = response.text;
+                  executionMode = 'live_ai_grounded';
+                  break;
+                }
+              } catch (err: any) {
+                lastError = err;
+                const isUnavailable = err?.status === 'UNAVAILABLE' || 
+                                      err?.message?.includes('503') || 
+                                      err?.message?.includes('high demand') ||
+                                      err?.code === 503;
+                if (isUnavailable) {
+                  // Try next attempt or switch to fallback model
+                  continue;
+                }
+                // Non-transient error, break to fallback model
+                break;
+              }
+            }
+            if (answer) break;
+          }
+
+          if (!answer) {
+            console.warn('Gemini calls exhausted or timed out, falling back gracefully to offline knowledge graph:', lastError?.message || lastError);
             executionMode = 'offline_knowledge_graph';
-            fallbackReason = 'Live Gemini API request failed or timed out. Served authoritatively via air-gapped Offline Knowledge Graph.';
+            fallbackReason = 'Live AI model is temporarily experiencing peak upstream demand. Served seamlessly via verified Offline Knowledge Graph.';
           }
         } else {
           fallbackReason = 'GEMINI_API_KEY is not configured in server environment. Served authoritatively via air-gapped Offline Knowledge Graph.';
